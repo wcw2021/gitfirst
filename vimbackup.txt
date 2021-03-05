@@ -1,0 +1,54 @@
+
+i    // insert mode on cursor
+a    // insert mode on cursor after
+I    // insert mode on begin of line:
+A    // insert mode on end of line:
+:w   // write
+:q   // quit
+
+x    // delete char
+r    // replace char
+dd   // delete row (cut for paste)
+
+:!   // execute linux command without need to quit vim eg: :! ls
+:r   // readign other file eg: :r hello.txt
+
+:e     // open second buffer to edit
+:enew  // open new buffer
+:bp    // go to buffer previous
+:bn    // go to buffer next
+:bd    // buffer delete
+
+
+:split    // spliting horizontally
+:vsplit   // spliting vertically
+ctl ww    // for switching  
+
+
+u    // undo
+gg   // go to top
+G    // go to bottom
+0    // begin of line
+$    // end of line
+v    // visual mode:
+y    // yank
+p    // paste
+
+
+:set number
+:set nonumber
+
+:%s/a/admin/g         // replacing a to admin
+
+
+.vimrc      // file for configuration
+
+
+
+
+
+
+
+
+
+
