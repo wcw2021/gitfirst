@@ -1,0 +1,30 @@
+
+git init    //initiate
+git remote add origin "https://github.com/...."
+git pull origin master 
+
+git add filename
+git commit -m "comment"
+git status
+
+git branch
+git chekout -b newbranchname
+git checkout master
+git merge newbranchname
+
+git rebase newbranchname
+git push origin master
+
+
+setting:
+ssh-keygen
+ssh -T git@github.com
+
+.gitconfig  // file for configurate git
+git config --global user.name "name"
+git config --global user.email "email"
+
+                        
+
+
+
