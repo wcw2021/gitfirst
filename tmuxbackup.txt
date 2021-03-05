@@ -1,0 +1,39 @@
+
+tmux  //start first session
+tmux new -s sessionName  //create session with name
+
+ctrl + b, "   //split horizon
+ctrl + b, %   //split vertical
+
+ctrl + b, arrow key  //navigate
+ctrl + b, space   //
+ctrl + b, x    //pane closing
+exit
+ctrl + d
+
+
+ctrl + b, c   //create windows
+ctrl + b, p   //switch to previous window
+ctrl + b, n   //switch to next window
+ctrl + b, ,   // rename current window
+
+
+ctrl + b, d   //session detaching
+tmux a   //last session attaching
+
+tmux ls   //list session
+tmux attach -t 0  //go back to session 0
+tmux rename-session -t 0 newname  //rename session 0
+ctrl + b, $   //rename session
+tmux kill-session -a   //kill all session
+
+ctrl + b, z   //making pane go fullscreen and back
+ctrl + b, ctrl + arrow key   //resize pane
+
+
+tmux info     //show info
+ctrl + b, ?   //help
+
+
+
+
