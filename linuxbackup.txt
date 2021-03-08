@@ -1,0 +1,230 @@
+
+echo $PATH
+env
+
+usr/local/bin  //
+less .profile
+nano .bashrc
+
+working with storage:
+  ls  /dev
+  sda          //hard drive
+  lsblk
+  mount
+  less /etc/fstab
+  swap  //virtual memory
+  dd if=/dev/zero of=/dev/sdb bs=1024k count=2048
+  sync
+  fdisk /dev/sdb  
+  mkfs -t ext4 /dev/sdb1    //create file system  
+  mount /dev/sda1 /mnt
+  umount /mnt
+  mount /dev/sdb1 /mnt
+  chown joe:joe /mnt
+  gnome-disks
+  gparted  
+  free -h   //memory usage
+  df -hT     //disk usage -T for type
+  du -h     //
+  uptime    
+  lspci
+  lscpu
+  blkid
+  top
+  gnome-system-moniter
+  
+  lsof  //check open files  -s for size  -t for terse outopt  -u for user
+  fuser   //  -k for kill  -m for 
+  fsck  //need umount first remount after
+  
+  
+  pvcreate /dev/sdb
+  pvscan
+  vgcreate data /dev/sdb    //create volume group "data"
+  vgextend data /dev/sdc
+  lvcreate -L 25G -n shared data   //logical volume "shared" create
+  lvscan
+  
+//process 
+  ps -elf | grep rtracy
+  pgrep -l -u rtracy
+
+//printing    
+//port 631
+//cupsd.conf
+//var/spool/cups ->queue location
+   
+//MTA ->email  (sendmail, postfix, qmail, exim)  
+//mail user agent -> MUA
+//smtp port 25 unencrypt  port 465 encrypt
+//pop3 port 110 unencrypt port 995 encrypt
+//imap port 143 unencrypt port 993 encrypt
+  mail 
+  mail ksanders@hostname
+  
+   
+//mounting file system
+  fdisk -l /dev/sdb
+  cd /mnt
+  mkdir shared
+  mkdir private
+  mount -t ext4 /dev/sdb1 /mnt/shared
+  cd shared  
+
+//umount
+  umount /dev/sdb1
+  mount
+  umount /mnt/private
+  mount
+
+//mount permanent
+ vi /etc/fstab
+ /dev/sdb1 /mnt/shared ext4 defaults 1 2
+
+//lvm
+  lvscan
+  mount -t ext4 /dev/data/shared /mnt/shared/
+  
+
+//create mbr file system
+  fdisk -l /dev/sdb
+  mkfs -t ext4 /dev/sdb1
+  mkfs -t ext3 /dev/sdb5
+  
+
+//create swap file system
+  partprobe
+  mkswap /dev/sdb6
+  swapon /dev/sdb6
+
+  swapon -s
+  swapoff /dev/sdb6
+   
+//create file system for lvm
+  mkfs -t ext4 /dev/data/shared
+
+//create gpt guid file system
+  
+//guid partion table  -> gpt
+  gdisk 
+  
+  parted
+  select /dev/sdb
+  mkpart
+  
+
+//cpio   
+ find . -depth -print | cpio -ov > /mddia/usb/backup.cpio
+ cpio -iv < /media/usb/backup.cpio
+ cat file_name | cpio
+
+//dd
+  dd if=input_file of=output_file
+  dd if=/home/rtracy/boot.log of=/tmp/boot.log.copy
+//copy partition with dd
+  dd if=/dev/sdb1 of=/mnt/usb/partbak.dd
+//copy disk with dd
+  dd if=/dev/sdb of=/mnt/usb/drivebak.dd
+//backup mbr with dd
+  dd if=/dev/sda of=/root/mbrbackup bs=512 count=1
+  
+
+//manage kernel modules
+  lsmod
+  rmmod parport_pc
+  depmod -v
+  modprode parport_pc
+  lsmod
+
+     
+//process prioritize
+//PR and NI
+//nice value from -20 to 19
+  ps -efl
+  nice -n -15 gedit
+  ps -elf
+  renice -n 4 4133
+
+
+//schedule task with at
+  sytstemctl status atd
+  at now + 2 minutes
+  ps -elf > ~/psoutput
+  ctrl + d   //to submit the job
+  atq
+  atrm 2
+
+//shedule task with cron
+  cat /etc/crontab
+  /etc/cron.d
+  /etc/cron.deny
+  crontab -e
+  crontab -l
+
+
+//anacron
+  cat /etc/anacrontab  
+    
+
+//quotas
+  vi /et/fstab
+  /dev/sdb1 /mnt/shared ext4 defaults.usrjquota=aquota.user,grpjquota=aquota.grp,jqfmt=vfsv0 1 2
+  mount -o remount /mnt/shared
+  mount
+  quotacheck -avmug
+  ls /mnt/shared
+  qoutaon -av
+  repquota -av
+  edquota -u rttracy
+  edquota -g users
+
+
+//ncdu
+  dnf search ncdu
+  sudo dnf install ncdu
+  ncdu /home/jay/
+  sudo ncdu -x  /
+
+//manage storage
+  lsblk
+  sudo umount /dev/sdc1
+  ls /run/media/jay/backup
+  lsblk
+  
+  sudo fdisk -l
+  mount | grep sdc
+  
+  lsblk
+  sudo mount /dev/sdc1 /mnt
+
+  sudo fdisk /dev/sdc
+  sudo mkfs.ext4 /dev/sdc1 -L 'linux'
+  sudo mkdir /mnt/linux_part
+  sudo mount /dev/sd1 /mnt/linux_part/
+   
+  sudo cp /etc/fstab /etc/fstab.bk
+  sudo nano /etc/fstab
+  sudo blkid /dev/sdb1
+  sudo nano /etc/fstab
+  UUID=4eaba61f-46... /mnt/linux_part ext4 defaults 0 1
+  sudo mount /mnt/linux_part
+
+//ssh
+  ssh -X 
+  
+  arp -a
+  arp-scan --localnet
+
+  
+//apache
+  ip ad
+  cat /etc/redhat-release
+  yum install httpd
+  vi /etc/httpd/conf/httpd.conf
+  systemctl start httpd
+  systemctl status httpd
+  netstat -tulpn
+  cd /var/www/html
+  
+  
+

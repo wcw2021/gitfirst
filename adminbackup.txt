@@ -1,0 +1,28 @@
+system admin tool:
+free -h //memory usage
+df  -h  //disk usage
+du | less  //what use disk space
+watch free -h  //watch  ctrl+c for quit
+dmesg | tail   //list of kernel taking
+tail  /var/log/syslog  > logtail.txt
+journalctl 
+top
+htop
+killall
+caja  //file manager(gui)
+ifconfig
+ping
+lsblk
+mount /dev/sda2 /mnt
+umount /dev/sda2
+fdisk -l
+blkid
+uname -a
+history | less
+cal 
+e4defrag /home -c
+reboot
+shutdown -c
+
+
+

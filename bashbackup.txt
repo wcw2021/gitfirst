@@ -1,0 +1,24 @@
+bash
+
+#!/bin/bash 
+
+# comment
+clear
+read -p "press any key to start. "
+echo -e "enter your name: "
+read name
+echo "hello, $name"
+
+
+
+chmod +x hello
+./hello
+
+clear 
+echo "Memory Usage: "
+free -h
+echo "Disk Usage: "
+df -h
+
+
+

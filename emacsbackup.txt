@@ -1,0 +1,12 @@
+
+emacs
+ctrl x ctrl f //open file
+ctrl x ctrl c //close file
+ctrl e  //end of line
+alt w  //copy
+ctrl y  //paste
+ctrl w  //cut
+ctrl x u //redo
+ctrl space //select mode
+
+
