@@ -227,4 +227,62 @@ working with storage:
   cd /var/www/html
   
   
+//firewalld
+firewall-cmd --permanent --add-port=22/tcp
+firewall-cmd --permanent --add-port=53/udp
+
+firewall-cmd --permanent --remove-port=53/udp
+
+firewall-cmd --permanent --add-service=ssh
+
+firewall-cmd --permanent --remove-service=mysql
+
+firewall-cmd --permanent --add-source=192.168.1.100
+firewall-cmd --permanent --add-source=192.168.1.100/24
+
+firewall-cmd --permanent --remove-source=192.168.1.100
+
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address=192.168.1.100 reject"
+firewall-cmd --permanent --remove-rich-rule="rule family='ipv4' source address=192.168.1.100 reject"
+firewall-cmd --reload
+firewall-cmd --list-all
+
+//acl
+useradd laura
+groupadd sales
+groupmems -g sales -l
+usermod -aG sales laura
+id laura
+
+getfacl
+setfacl -R -m g:account:rx sales
+setfacl -R -m d:g:account:rx sales
+
+setfacl -x u:user1 testfile1
+
+tune2fs
+
+//suid sgid 
+chmod 6774 runme
+chmod 1770 RandD/
+
+
+//connect to database server
+mysql -h localhost -u root -p
+
+
+//autofs
+rpm -q autofs
+yum install autofs
+ls /etc/auto*
+vim /etc/autofs.conf
+vim /etc/auto.master
+systemctl start autofs
+systemctl enable autofs
+ls /net/srv0
+showmount -e srv0
+ls /net/srv0/entlinux1
+df -h 
+vim /etc/auto.misc
+
 

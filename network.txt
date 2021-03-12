@@ -1,0 +1,7 @@
+netstat -nr  //
+
+netstat -i   //
+
+
+sudo /etc/hosts
+

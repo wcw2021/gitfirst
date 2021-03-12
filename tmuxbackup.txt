@@ -1,7 +1,11 @@
+//session
+sudo apt install tmux
 
-tmux  //start first session
+tmux  //start first session  
 tmux new -s sessionName  //create session with name
 
+
+//pane
 ctrl + b, "   //split horizon
 ctrl + b, %   //split vertical
 
@@ -11,13 +15,15 @@ ctrl + b, x    //pane closing
 exit
 ctrl + d
 
-
+//window
 ctrl + b, c   //create windows
 ctrl + b, p   //switch to previous window
 ctrl + b, n   //switch to next window
 ctrl + b, ,   // rename current window
 
 
+
+//session
 ctrl + b, d   //session detaching
 tmux a   //last session attaching
 
@@ -26,6 +32,8 @@ tmux attach -t 0  //go back to session 0
 tmux rename-session -t 0 newname  //rename session 0
 ctrl + b, $   //rename session
 tmux kill-session -a   //kill all session
+tmux kill-session -t sessionname   //kill session 
+
 
 ctrl + b, z   //making pane go fullscreen and back
 ctrl + b, ctrl + arrow key   //resize pane
