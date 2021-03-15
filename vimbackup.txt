@@ -9,9 +9,10 @@ A    // insert mode on end of line:
 x    // delete char
 r    // replace char
 dd   // delete row (cut for paste)
+dw   // delete word
 
 :!   // execute linux command without need to quit vim eg: :! ls
-:r   // readign other file eg: :r hello.txt
+:r   // reading other file eg: :r hello.txt
 
 :e     // open second buffer to edit
 :enew  // open new buffer
@@ -24,7 +25,7 @@ dd   // delete row (cut for paste)
 :vsplit   // spliting vertically
 ctl ww    // for switching  
 
-
+.    // repeat last operation
 u    // undo
 gg   // go to top
 G    // go to bottom

@@ -228,6 +228,12 @@ working with storage:
   
   
 //firewalld
+//port lookup-> vim  /etc/services
+systemctl enable firewalld
+systemctl start firewalld
+systemctl stop firewalld
+systemctl restart firewalld
+systemctl status firewalld
 firewall-cmd --permanent --add-port=22/tcp
 firewall-cmd --permanent --add-port=53/udp
 
@@ -238,14 +244,18 @@ firewall-cmd --permanent --add-service=ssh
 firewall-cmd --permanent --remove-service=mysql
 
 firewall-cmd --permanent --add-source=192.168.1.100
-firewall-cmd --permanent --add-source=192.168.1.100/24
+firewall-cmd --permanent --add-source=192.168.1.0/24
 
 firewall-cmd --permanent --remove-source=192.168.1.100
 
-firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address=192.168.1.100 reject"
-firewall-cmd --permanent --remove-rich-rule="rule family='ipv4' source address=192.168.1.100 reject"
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='192.168.1.100' reject"
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='192.168.1.0/24' reject"
+firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="192.168.1.100" port protocol="tcp" port="3306" accept'
+firewall-cmd --permanent --remove-rich-rule='rule family="ipv4" source address="192.168.1.100" port protocol="tcp" port="3306" accept'
+
 firewall-cmd --reload
 firewall-cmd --list-all
+
 
 //acl
 useradd laura

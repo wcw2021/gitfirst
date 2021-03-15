@@ -1,0 +1,9 @@
+
+//rsync for local backup
+sudo apt install rsync
+mkdir Desktop/backup
+rsync -avz introtogit/  Desktop/backup/
+rsync -avz introtogit/  192.168.56.102:~/Desktop/backup/
+
+
+

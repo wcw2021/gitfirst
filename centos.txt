@@ -1,0 +1,32 @@
+
+centos:
+
+useradd john
+id john
+passwd john
+userdel -r john
+usermod -L john  //L for locking password
+cat /etc/shadow | grep john
+usermod -U john  //U for unlock password
+usermod -G wheel john  //G for second group, g for primary group
+groups john
+cat /etc/passwd | grep john
+
+vi /etc/login.defs   //login policy
+chage -l wei    //show password policy
+date -d '+30days' +%F
+chage -E 2018-03-14 john   //set expire date for account
+chage -E -1 john   //remove expire date for account
+chage -M 30 john    //set expire date for password
+chage -d 0 john   //set lastday to 0 for need password change on nextlogin
+
+cat /etc/group
+groupadd class1
+usermod -g class1 student
+usermod -aG class2 student
+groupmod -n classnew class1   //rename group to classnew
+groupmod -g 4000 classnew    //change group id
+chmod g+rwx work/  
+chown root:class3 work/
+group del class2
+

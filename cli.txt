@@ -1,0 +1,45 @@
+
+wget http://bit.ly/cli-files
+unzip cli-files
+du -h
+du -sh *
+grep -r "sedosa" .
+find . -name "*.csv"
+find /home/ubuntu -type f -size +10M
+tail -f hello.txt
+ps u
+cat /proc/2860/status
+netstat -ntlp   //n for numeric t for tcp l for listening p for program
+
+//youtube-dl ->download youtube video
+sudo apt install python-pip
+sudo pip install youtube-dl
+youtube-dl 'https://www.youtube.com/watch?v=EFuT_vl....'
+
+
+echo $PATH
+PATH=$PATH:.
+
+file: 664
+directory: 775
+
+
+//zsh
+sudo apt install zsh git
+
+//ssh
+sudo apt install openssh-server
+netstat -ntlp | grep 22
+
+
+//nohup 
+nohup tail -f .bashrc &    // & send command to backgroud
+
+
+
+
+
+
+
+
+

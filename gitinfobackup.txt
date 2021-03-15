@@ -28,4 +28,17 @@ git config --global user.email "email"
 git remote -v   //view current remotes
 git remote rm origin  //remove origin
 
+git clone <bitbucket_url>
 
+git fetch origin
+git merge origin/master
+
+git pull
+
+//push subbranch to origin to make remote subbranch
+git push origin localsubbranch
+
+//bring remote subbranch to local
+git fetch      //fetch oringin/feature2
+git checkout -b feature2 origin/feature2
+git push

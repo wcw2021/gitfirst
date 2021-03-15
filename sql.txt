@@ -1,0 +1,92 @@
+
+//sql:
+mysql -V
+sudo su
+passwd ubuntu
+passwd
+sudo mysql_secure_installation
+# no for validate password
+# set root password
+# yes for remove anonymous user
+# yes for disallow remote root login
+# yes for drop test database
+# yes for reload privilege table reload
+sudo service mysql restart
+sudo systemctl enable mysql
+sudo mysql -u root -p
+
+show databases;
+create database newdb;
+use newdb;
+create table task(task_id INT, title VARCHAR(255) NOT NULL);
+GRANT ALL PRIVILEGES ON newdb.* TO 'name'@'localhost' identified by 'password';
+\q    //exit mysql
+mysql -u wei -p
+use newdb;
+select * from task;
+
+
+drop database mashrur1;
+drop table people;
+show tables;
+select database();
+show columns in people2;
+desc people2;
+alter table people2 add column DOB date null;
+alter table people2 drop column DOB;
+
+create table newdb.actors( ActorID int not null auoto_increment, Fname varchar(100) null, Lname varchar(100) null, primary key(ActorID));
+
+select concat(LastName, ', ', FirstName) as ActorName from actors;
+
+select LastName, substring(LastName, 1, 3) from actors;
+
+select * from actors order by LastName, FirstName limit 3;
+select distinct LastName from actors;
+select count(*) as cnt from actors;
+select LastName, count(*) as names from actors group by LastName;
+ 
+select * from actors where FirstName like 'mary%';
+select * from actors where FirstName like '%mary%';
+select count(*) as "museum movies" from movies where title like "%Museum%";
+select max(Release_year) from movies;
+select min(Release_year), rating from movies where title like "%Museum%" group by title, rating;
+
+//when using function need using group by to avoid mistake
+
+
+select concat(FNAME, ' ', LNAME) as player, SUM(Game_Score) as 'Tournament Total', SUM(Game_Score)/COUNT(*) as 'Tournament Average' from bowlResults group by FNAME, LNAME order by SUM(Game_Score)/COUNT(*) desc limit3;
+
+select concat(FNAME, ' ', LNAME) as player, MAX(Game_Score) as 'Best game' from bowlResults group by FNAME, LNAME ordery by MAX(Game_Score) desc;
+
+select distinct FNAME as 'first name' , LNAME as 'last name' from bowlResults;
+select title, release_year from movies where title in ('Zoolander', 'Tropical');
+select * from movies where (rating = "R" or title like "Zoo%");
+
+select * from movies where rating is not null;
+select * from movies where rating is 'R' or ifnull(rating, '') = '';
+
+//case statment
+select title, rating, case when rating='PG' then 'Bring the kids' when rationg='R' then 'Not for kids' else 'No info' end as audience  from movies;
+
+//date and time
+select now(), curdate();
+select month(now()), monthname(now());
+
+select dob as Birthdays, curdate() as Today, timestampdiff(year, dob, curdate()) as age from person;
+
+
+
+
+
+//run script from terminal
+source test1.sql
+
+
+
+
+
+mysql-ctl cli
+\! clear
+
+

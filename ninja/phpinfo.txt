@@ -1,0 +1,13 @@
+
+httpd.conf  // file for configure port change
+
+
+can put variable in double quote, but not work in single quote
+
+escape character: \ 
+
+
+
+
+
+
