@@ -5,5 +5,19 @@ mkdir Desktop/backup
 rsync -avz introtogit/  Desktop/backup/
 rsync -avz introtogit/  192.168.56.102:~/Desktop/backup/
 
+ssh-keygen
+ssh-copy-id 192.168.56.102   //copy pubkey to .ssh directory of 192.168.56.102
+ssh 192.168.56.102   //no need to enter passwd
 
+
+//vlc
+//firewall-config ->gui firewall
+
+//clustering
+vgcreate cluster_shared /dev/sdb
+lvcreate -L 5g -n lShared cluster_shared
+ssh 192.168.56.102
+vim /etc/iscsi/initialtorname.iscsi
+targetcli 
+cd /backstores/block
 

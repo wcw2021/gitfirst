@@ -42,3 +42,36 @@ git push origin localsubbranch
 git fetch      //fetch oringin/feature2
 git checkout -b feature2 origin/feature2
 git push
+
+//delete local subbranch
+git branch -d feature2
+
+//delete remote subbranch
+git push origin :feature2
+
+
+//merge conflict
+
+
+
+//revert change
+git reset --hard <commit>      //delete commit
+git reset <commit>      //delete commit but kept change
+git revert <commit>  
+
+
+//gitflow workflow
+//sourcetree ->graphic tool
+          
+             
+    
+     
+ 
+ 
+   
+
+
+
+
+
+

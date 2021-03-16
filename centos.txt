@@ -30,3 +30,49 @@ chmod g+rwx work/
 chown root:class3 work/
 group del class2
 
+
+
+//dns
+yum install bind bind-utils net-tools -y
+ifconfig
+vi /etc/named.conf  //add address in port53 and allow-query and create zones
+vi /var/named/forward
+vi /var/named/reverse
+
+vi /etc/resolv.conf
+systemctl start named
+nslookup testlab.local
+
+
+//setup lamp
+yum install httpd -y
+systemctl start httpd
+yum install php php-mysql php-pdo php-gd php-mbstring -y
+vim /var/www/html/info.php
+service httpd restart
+yum install mariadb-server mariadb -y
+systemctl stat mariadb
+mysql_secure_installation
+mysql -u root -p
+yum install epel-release
+yum update
+yum install phpmyadmin
+vi /etc/httpd/conf.d/phpmyadmin.conf
+service httpd restart
+
+cd /etc/pki/tls/certs/
+openssl genpkey -algorithm rsa -pkeyopt rsa keygen bits:2048 -out web01.testlab.com.key
+
+openssl req -new -key web01.testlab.com.key -out web01.testlab.com.csr
+
+openssl x509 -req -days 365 -signkey web01.testlab.com.key -in web01.testlab.com.csr -out web01.testlab.com.crt
+
+
+
+
+
+
+
+
+
+

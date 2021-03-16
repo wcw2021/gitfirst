@@ -36,6 +36,14 @@ y    // yank
 p    // paste
 
 
+w  //mv to begin of next word
+b  //mv to begin of prev word
+
+e  //mv to end of word
+
+
+
+
 :set number
 :set nonumber
 
