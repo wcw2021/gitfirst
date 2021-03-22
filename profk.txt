@@ -1,0 +1,45 @@
+
+apache:
+service httpd start
+service httpds status
+cd /var/www/html
+vim index.html
+
+configure nic:
+//release ip
+ifconfig ens33 down
+//renew ip
+ifconfig ens33 up
+
+//change current ip
+ifconfig ens33 192.168.45.148 netmask 255.255.255.0
+ifconfig
+
+cd /etc/sysconfig/network-scripts
+cp  ifcfg-ens33 ifcfg-back
+vim ifcfg-ens33
+
+systemctl status NetworkManager
+nmcli con show
+nmcli dev status
+ip addr
+nmcli con down id ens33
+nmcli con up id ens33
+
+nmtui
+
+
+//dhcp
+dnf -y install dhcp
+cat /etc/dhcp/dhcpd.conf
+cd /usr/share/doc/dhcp-server/
+nano -c dhcpd.conf.example
+
+
+//log
+journalctl -u httpd
+systemctl --failed
+
+
+
+

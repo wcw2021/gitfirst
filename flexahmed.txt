@@ -1,0 +1,151 @@
+* ahmed flex
+ 
+
+.flex-container{
+	display: flex;
+	flex-flow: column;    //column-reverse;  row-reverse; 
+	flex-wrap: wrap;      //wrap-reverse;
+}
+
+.flex-item{
+
+} 
+
+
+
+//justify-content   ->work along the main axis
+justify-content: space-between;     //flex-end;  center;  space-aound;  flex-start(default);
+
+
+//align-items   ->work along the cross-axis
+align-items: flex-start   //flex-end;  center;  stretch(default);
+
+
+//align-self     ->on single item only
+align-self: stretch;     //center;  flex-end;   flex-start;
+
+
+//align-content  ->on multiple lines of item
+align-content: space-around;   //center;   flex-start;  flex-end;  space-between;
+
+
+//order   ->order single item in place, small number in first place
+order:2;    //3;  4;  1;   2;    0(default);  -1;  
+
+------------------------------------------------------------------------------
+//flex-grow
+//default =>flex-grow: 0;
+//flex-grow    ->fill up each item with equal width of leftover
+.flex-item{
+	flex-grow: 1;
+}
+
+//flex-grow    ->fill up item3 with x2 width of leftover instead of x1 width
+.flex-item{
+	flex-grow: 1;
+}
+.flex-item-3{
+	flex-grow: 2;
+}
+
+//flex-grow    ->fill up item3 with entire space of leftover 
+.flex-item{
+	flex-grow: 0;
+}
+.flex-item-3{
+	flex-grow: 1;
+}
+----------------------------------------------------------------------------
+
+//flex-shrink 
+//default =>flex-shrink: 1;
+//flex-shrink: 0;  //not to shrink below its width
+.flex-container{
+	display: flex;
+	flex-wrap: wrap;
+}
+.flex-item{
+	width: 300px;
+	flex-shrink: 0;
+}
+----------------------------------------------------------------------
+
+//flex-basis
+//default =>flex-basis: auto;
+flex-basis: 0;     //ignore item's original content
+
+//flex: 1 1 0;     //1 for flex-grow,  1 fro flex-shrink,  0 for flex-basis
+
+---------------------------------------------------------------
+
+------------------------------------------------------------------
+
+//menu
+
+@import url('CSS/reset.css');
+@import url('CSS/layout.css');
+@import url('CSS/typography.css');
+@import url('CSS/masthead.css');
+
+/*our menus styles*/
+.menu-section {
+	padding-bottom: 2em;
+	margin-bottom: 2em;
+}
+
+.menu ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	background-color: #dcdde1;
+}
+
+.menu li a {
+	text-decoration: none;
+	color: #353b48;
+	padding: .6em 1em;
+	display: block;
+	transition: all .5s ease;
+}
+
+.menu li a:hover {
+	background-color: #f5f6fa;
+}
+
+.menu-heading {
+	font-size: 2em;
+	font-weight: normal;
+}
+
+@media screen and (min-width: 600px) {
+
+	.single-nav ul {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		text-align: center;
+	}
+
+	.single-nav ul li {
+		flex-grow: 1;
+		flex-basis: auto;
+		flex-shrink: 0;
+	}
+
+}
+
+
+-----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+

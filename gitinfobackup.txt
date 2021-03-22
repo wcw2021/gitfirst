@@ -62,6 +62,8 @@ git revert <commit>
 
 //gitflow workflow
 //sourcetree ->graphic tool
+//gitkraken  ->graphic tool
+
           
              
     
