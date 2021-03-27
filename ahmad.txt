@@ -21,3 +21,7 @@ vim /etc/iscsi/initialtorname.iscsi
 targetcli 
 cd /backstores/block
 
+
+//ubuntu apache
+sudo apt-get install apache2
+sudo vim /etc/apache2/apache2.conf

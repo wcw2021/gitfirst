@@ -23,7 +23,7 @@ ssh -T git@github.com
 .gitconfig  // file for configurate git
 git config --global user.name "name"
 git config --global user.email "email"
-
+cat ~/.gitconfig
                         
 git remote -v   //view current remotes
 git remote rm origin  //remove origin
@@ -55,17 +55,21 @@ git push origin :feature2
 
 
 //revert change
-git reset --hard <commit>      //delete commit
-git reset <commit>      //delete commit but kept change
-git revert <commit>  
+git reset --hard HEAD^      //delete commit
+git reset HEAD^      //delete commit but kept change
+git revert HEAD  
 
 
 //gitflow workflow
 //sourcetree ->graphic tool
 //gitkraken  ->graphic tool
 
-          
-             
+
+//unstage file  (uncommit)   
+  git reset Head info.txt
+
+//undelete file  (unadd)
+  git checkout -- info.txt           
     
      
  
