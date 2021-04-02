@@ -12,6 +12,7 @@ git chekout -b newbranchname
 git checkout master
 git merge newbranchname
 
+
 git rebase newbranchname
 git push origin master
 
@@ -51,18 +52,16 @@ git push origin :feature2
 
 
 //merge conflict
+using git diff to see conflict and fix in vim then git add and git commit
 
+//rebase conflict
+using git diff to see conflict and fix in vim then git add and git rebase --continue 
 
 
 //revert change
 git reset --hard HEAD^      //delete commit
-git reset HEAD^      //delete commit but kept change
+git reset HEAD^      //delete commit but kept change file
 git revert HEAD  
-
-
-//gitflow workflow
-//sourcetree ->graphic tool
-//gitkraken  ->graphic tool
 
 
 //unstage file  (uncommit)   
@@ -73,11 +72,45 @@ git revert HEAD
     
      
  
+//git lg
+git log --topo-order --all --graph --date=local --pretty=format:'%C(green)%h%C(reset) %><(55,trunc)%s%C(red)%d%C(reset) %C(blue)[%an]%C(reset) %C(yellow)%ad%C(reset)%n'
+
+//git lg
+git log --oneline --graph --decorate --all   
+
+
+//README.md
+ #
+ ##
  
-   
 
 
+//view file diifference
+git diff info.txt
 
+//fix commit message
+git commit --amend
+
+//force push
+git push origin master -f 
+
+
+//stash  ->temporary safe
+git stash
+git stash list
+git stash apply 
+git stash drop
+
+//tag
+git tag tagname
+git push origin --tags   //push tags
+git tag -d tagname   //del tag
+git push origin --delete tagname  //del tag in github
+
+
+//gitflow workflow
+//sourcetree ->graphic tool
+//gitkraken  ->graphic tool
 
 
 

@@ -3,7 +3,8 @@
 
 .flex-container{
 	display: flex;
-	flex-flow: column;    //column-reverse;  row-reverse; 
+  flex-flow: row wrap;       //shorthand for flex-direction and flex-wrap
+	flex-direction: column;    //column-reverse;  row-reverse; 
 	flex-wrap: wrap;      //wrap-reverse;
 }
 
@@ -14,11 +15,11 @@
 
 
 //justify-content   ->work along the main axis
-justify-content: space-between;     //flex-end;  center;  space-aound;  flex-start(default);
+justify-content: space-between;     //flex-end;  center;  space-aound;  flex-start(default); space-evenly;
 
 
 //align-items   ->work along the cross-axis
-align-items: flex-start   //flex-end;  center;  stretch(default);
+align-items: flex-start   //flex-end;  center;  stretch(default); space-evenly;
 
 
 //align-self     ->on single item only

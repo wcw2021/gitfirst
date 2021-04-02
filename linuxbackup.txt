@@ -257,6 +257,31 @@ firewall-cmd --reload
 firewall-cmd --list-all
 
 
+//iptable
+iptables  -L   //list
+iptables  -A  INPUT -s 10.0.3.6 -j DROP   //add sourse jump
+iptables  -A  INPUT -s 10.0.3.7 -j REJECT 
+iptables  -F  INPUT   //flush input
+iptables  -A  INPUT -j DROP   //drop all
+iptables  -A  INPUT -s 10.0.3.6 -j ACCEPT 
+iptables  -D  INPUT 2   //delete 2nd rule
+iptables  -I  INPUT -s 10.0.3.6 -j ACCEPT   //insert
+iptables  -A  OUTPUT -j DROP
+iptables  -I  OUTPUT -d 10.0.3.6 -j ACCEPT   //destination 
+iptables  -F   //flush all 
+
+iptables -A OUTPUT -p udp --dport 53 -j DROP  //destination port
+iptables -A INPUT -p tcp --dport 22 -j DROP
+iptables -A OUTPUT -p tcp --dport 21 -j REJECT 
+iptables -A INPUT -p tcp --dport 22 -s 10.0.3.6 -j DROP 
+iptables -I INPUT -p tcp --dport 22 -s 10.0.3.7 -j ACCEPT 
+iptables 
+
+
+
+
+
+
 //acl
 useradd laura
 groupadd sales
@@ -294,5 +319,6 @@ showmount -e srv0
 ls /net/srv0/entlinux1
 df -h 
 vim /etc/auto.misc
+
 
 
