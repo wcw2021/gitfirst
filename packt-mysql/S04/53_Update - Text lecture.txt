@@ -15,7 +15,7 @@ WHERE Title = 'Fight Club';
 
 Then run an update on the same selection criteria:
 UPDATE movies
-SET ReleaseYear = 1999
+SET Release_Year = 1999
 WHERE Title = 'Fight Club'; 
 
 We can update multiple rows and multiple columns at the same time:

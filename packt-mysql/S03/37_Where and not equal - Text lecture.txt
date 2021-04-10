@@ -1,6 +1,6 @@
 Where and not equal - Text lecture
 Section 3, Lecture 37
-In section 2 we looked at where but didn’t dive very far into it. Now we will explore more options of the Where Clause….
+In section 2 we looked at where but didn't dive very far into it. Now we will explore more options of the Where Clauseï¿½.
 
 Where is how we control which rows are returned.  
 
@@ -17,20 +17,19 @@ WHERE 1=1;
 
 SELECT 1 As Result
 FROM movies
-WHERE Rating=’PG’;
+WHERE Rating='PG';
 
-It’s important to see that WHERE only controls which rows are returned, but has no other effect on what data actually returns.
+It's important to see that WHERE only controls which rows are returned, but has no other effect on what data actually returns.
 
 SELECT *
 FROM movies
 WHERE RATING = "PG" 
- AND Title LIKE "Night%";
+ AND TITLE LIKE "Night%";
 
 You can string as may conditions together as you need using AND
 
 SELECT *
 FROM movies
-WHERE RATING = "PG" 
- AND Title NOT LIKE "Night%";
+WHERE RATING = "PG" AND TITLE NOT LIKE "Night%";
 
-NOT allows you to define what you don’t want displayed.
+NOT allows you to define what you don't want displayed.

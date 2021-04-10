@@ -1,0 +1,302 @@
+//Start a SQL cli session and use the source keyword to execute it. If you wanted to run test1.sql type in:
+source test1.sql
+
+//CONCAT - Use to add columns together for display
+
+SELECT CONCAT(LAST_NAME, ', ', FIRST_NAME) AS ACTOR_NAME
+FROM actors;      
+
+//To grab certain data from the rows under a column (instead of all the data) you can use substring:
+
+SELECT LAST_NAME, SUBSTRING(LAST_NAME,1,3)
+FROM actors;  
+
+//A useful query to generate user name from first_name and last_name columns:
+
+SELECT FIRST_NAME
+      ,LAST_NAME
+      ,SUBSTRING(FIRST_NAME,1,1)
+      ,CONCAT(SUBSTRING(FIRST_NAME,1,1),LAST_NAME) AS USER_NAME
+FROM actors;  
+
+//Select allows you to name columns with spaces using "" you can create new columns, and calculate columns.  You can reuse columns for basically anything.
+
+SELECT CONCAT(LAST_NAME, ', ', FIRST_NAME) AS "Actor's Names"
+      ,LAST_NAME AS LNAME
+      ,FIRST_NAME AS "First Name"
+      ,CONCAT(SUBSTRING(FIRST_NAME,1,1),LAST_NAME) AS USER_NAME
+      ,'Any Text' AS Anything
+      ,1+2        AS Math
+FROM actors;
+
+
+CREATE TABLE players1 (BowlerID INT NOT NULL AUTO_INCREMENT
+
+                     ,FNAME varchar(50) DEFAULT NULL
+                     ,LNAME varchar(50) DEFAULT NULL
+                     ,Game1 int DEFAULT NULL 
+                     ,Game2 int DEFAULT NULL 
+                     ,Game3 int DEFAULT NULL 
+                     ,Game4 int DEFAULT NULL                      
+                     ,PRIMARY KEY (BowlerID)); 
+INSERT INTO players1 (FNAME, LNAME,Game1,Game2,Game3,Game4)
+VALUES ('Mashrur', 'Hossain',121,87,115,124)
+      ,('Matt', 'Berstein',111,99,135,105)
+      ,('Anastasia', 'Ivanov',75,99,125,141)
+      ,('Mark', 'Futre',115,128,101,84);
+      
+SELECT *
+FROM players1;
+
+SELECT CONCAT(LNAME,', ',FNAME) AS Player
+      ,CONCAT(SUBSTRING(FNAME,1,1),SUBSTRING(LNAME,1,1)) AS Initials
+      ,GAME1 AS G1
+      ,GAME2 AS G2
+      ,GAME3 AS G3
+      ,GAME4 AS G4
+      ,GAME1 + GAME2 + GAME3 + GAME4 AS "Tournament Total"
+      ,(GAME1 + GAME2 + GAME3 + GAME4)/4 AS "Tournament Average"
+FROM players1;
+
+
+//limit 3
+select * from actors limit 3;
+
+//order by the 3rd column.
+select * from actors order by 3;
+
+SELECT * FROM actors ORDER BY LAST_NAME ASC;
+
+
+//Use GROUP BY when using aggregate function.
+SELECT RATING
+      ,COUNT(*) AS MOVIES
+FROM movies
+GROUP BY RATING;
+
+
+//Like is used all the time for search when an entire description is not known, it's used with a % -> LIKE %
+You can put % before the word as well so like '%Museum%' and it will return all results that have museum in the title
+
+SELECT *
+FROM movies
+WHERE TITLE like '%Night at the Museum%';
+
+
+SELECT COUNT(*) AS "Night at the Museum Movies"
+FROM movies
+WHERE TITLE like 'Night at the Museum%';
+
+
+SELECT CONCAT(FNAME,' ',LNAME)  AS Player
+      ,SUM(Game_Score)          AS "Tournament Total"
+      ,SUM(Game_Score)/COUNT(*) AS "Tournament Ave"
+FROM  bowlResults     
+GROUP BY FNAME, LNAME   
+ORDER BY  SUM(Game_Score)/COUNT(*) DESC
+LIMIT 3;
+
+
+SELECT CONCAT(FNAME,' ',LNAME)  AS Player
+      ,MAX(Game_Score)          AS "Best Game"
+FROM  bowlResults     
+GROUP BY FNAME, LNAME   
+ORDER BY  MAX(Game_Score) DESC;
+
+SELECT DISTINCT FNAME AS "First Name"
+               ,LNAME AS "Last Name"
+FROM  bowlResults;
+
+
+//Decimal - Exact Values like money and measurements.  Decimals are defined as follows DECIMAL(A,B) where A is the total number of digits, and B is the number of digtis after the period.  For example DECIMAL(5,2) could handle anything from -999.99 to 999.99.  It could not handle 1000, or 123.456.
+
+//where and not
+SELECT *
+FROM movies
+WHERE RATING = "PG" AND TITLE NOT LIKE "Night%";
+
+//comparison operators
+SELECT title, release_year FROM movies
+WHERE release_year >= 2005  AND  release_year <= 2016;  
+
+//Exact Same results that include 2005 and 2016 as above
+SELECT title, release_year FROM movies
+WHERE release_year BETWEEN 2005 AND 2016; 
+
+
+//Combination of both Greater Than and Less Than is <> which means Not Equal.  Notice that the only value missing is the 2016
+SELECT title, release_year FROM movies
+WHERE release_year <> 2016;  
+
+
+//Not Equal also works well with other data types like strings.
+SELECT title, release_year FROM movies
+WHERE title <> 'Zoolander';   
+
+
+//Just like = and <>, we can use IN to include or exclude multiple values at the same time
+SELECT title, release_year FROM movies
+WHERE release_year IN (2005,2009,2010);   
+
+
+//In order to exclude items, we can use NOT IN
+SELECT title, release_year FROM movies
+WHERE release_year NOT IN (2005,2009,2010);  
+
+//This also works well for Strings
+SELECT title, release_year FROM movies
+WHERE title IN ('Zoolander','Tropic Thunder');
+
+//Using ()s and spacing help avoid mistakes when use OR. 
+SELECT * FROM movies
+WHERE ( RATING = "R" OR Title LIKE "Zoo%");
+
+
+//NULL Means there is no data. The issue comes when you are trying compare a non-existent value (null) to anything. Non-existent values don't equal anything.
+//however we can compare a string to an empty string which is "".
+SELECT * FROM movies  WHERE rating = 'R' OR rating = '';
+
+//IS NULL and IS NOT NULL
+SELECT * FROM movies  WHERE rating = 'R' OR rating IS NULL;
+
+//IFNULL(A, B) where A is the field to be compared and B is the default value to be used when NULL is found.  Oracle uses NVL and SQL Server uses ISNULL
+SELECT * FROM movies  WHERE rating = 'R' OR IFNULL(rating,'') = ''; 
+
+
+//case statements
+SELECT title
+      ,rating
+      ,CASE
+         WHEN RATING = 'PG'    THEN 'Bring the Kids!'
+         WHEN RATING = 'PG-13' THEN 'Older Kids'
+         WHEN RATING = 'R'     THEN 'Not for Kids'
+         ELSE 'No Information'
+       END AS AUDIENCE
+FROM movies;  
+
+//CASE Statment can be used in the SELECT or the WHERE. 
+SELECT * FROM movies
+WHERE CASE 
+        WHEN rating IS NULL THEN 1
+        WHEN rating = ''    THEN 1
+        WHEN release_year <= 2007 THEN 1
+      END = 1;
+
+
+//NOW() returns the system date and time of the server  
+//CURDATE() returns the system date without the time
+//CURTIME() returns the system time without the date
+//DAYOFMONTH is the same as DAY
+//DAYOFWEEK gives the number corresponding to the day. Sunday is 1 and Saturday is 7
+//DAYOFYEAR gives the day if we were counting from Jan 1st as 1, 
+SELECT NOW()
+      ,CURDATE()
+      ,CURTIME()
+      ,YEAR(NOW())
+      ,YEAR(CURDATE())
+      ,MONTH(NOW())
+      ,MONTHNAME(Now())
+      ,DAY(NOW())
+      ,DAYNAME(Now())
+      ,DAYOFMONTH(NOW())
+      ,DAYOFWEEK(NOW())
+      ,DAYOFYEAR(NOW());
+
+//cloud 9 Environment is not in your current timezone. Instead the System time is UTC. 
+Find your timezone here:
+https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
+//Then you can set your timezone:
+SET time_zone = '-7:00';
+SET GLOBAL time_zone = '-7:00';
+
+//Then you can check the time difference:
+select @@global.time_zone, @@session.time_zone;
+
+
+//find age by using TIMESTAMPDIFF()
+SELECT dob AS "Birthday"
+      ,CURDATE()  AS Today
+      ,TIMESTAMPDIFF( YEAR, dob, CURDATE() ) AS AGE
+FROM person;   
+
+
+//print out birthday this year and birthday next year
+SELECT FNAME
+      ,dob AS Birthday
+      ,CURDATE()   AS Today
+      ,STR_TO_DATE( CONCAT(MONTH(dob),'/',DAY(dob),'/',YEAR(CURDATE())),'%m/%d/%Y' ) AS "Birthday This Year"
+      ,DATE_ADD( STR_TO_DATE(CONCAT(MONTH(dob),'/',DAY(dob),'/',YEAR(CURDATE())),'%m/%d/%Y'), INTERVAL 1 YEAR ) AS "Birthday Next Year"
+FROM person;
+
+
+//use  CASE Statement to help decide which birthday to use:
+SELECT FNAME
+      ,dob AS Birthday
+      ,CURDATE()   AS Today
+      ,STR_TO_DATE(CONCAT(MONTH(dob),'/',DAY(dob),'/',YEAR(CURDATE())),'%m/%d/%Y') AS "Birthday This Year"
+      ,DATE_ADD( STR_TO_DATE(CONCAT(MONTH(dob),'/',DAY(dob),'/',YEAR(CURDATE())),'%m/%d/%Y'), INTERVAL 1 YEAR ) AS "Birthday Next Year"
+      ,CASE 
+         WHEN STR_TO_DATE(CONCAT(MONTH(dob),'/',DAY(dob),'/',YEAR(CURDATE())),'%m/%d/%Y') >= CURDATE()
+           THEN STR_TO_DATE(CONCAT(MONTH(dob),'/',DAY(dob),'/',YEAR(CURDATE())),'%m/%d/%Y')
+         ELSE DATE_ADD( STR_TO_DATE(CONCAT(MONTH(dob),'/',DAY(dob),'/',YEAR(CURDATE())),'%m/%d/%Y'), INTERVAL 1 YEAR )
+       END AS "Next Birthday"
+FROM person;
+
+
+//case2
+SELECT FNAME
+      ,dob AS Birthday
+      ,CURDATE()   AS Today
+      ,STR_TO_DATE(CONCAT(MONTH(dob),'/',DAY(dob),'/',YEAR(CURDATE())),'%m/%d/%Y') AS "Birthday This Year"
+      ,DATE_ADD( STR_TO_DATE(CONCAT(MONTH(dob),'/',DAY(dob),'/',YEAR(CURDATE())),'%m/%d/%Y'), INTERVAL 1 YEAR ) AS "Birthday Next Year"
+      ,CASE 
+         WHEN STR_TO_DATE(CONCAT(MONTH(dob),'/',DAY(dob),'/',YEAR(CURDATE())),'%m/%d/%Y') >= CURDATE()
+           THEN STR_TO_DATE(CONCAT(MONTH(dob),'/',DAY(dob),'/',YEAR(CURDATE())),'%m/%d/%Y')
+         ELSE DATE_ADD( STR_TO_DATE(CONCAT(MONTH(dob),'/',DAY(dob),'/',YEAR(CURDATE())),'%m/%d/%Y'), INTERVAL 1 YEAR )
+       END AS "Next Birthday"
+FROM person;
+
+
+//update
+UPDATE movies
+SET Release_Year = 1999
+WHERE Title = 'Fight Club'; 
+
+//update multiple
+UPDATE movies
+SET Release_Year = 2004
+WHERE title IN ('DodgeBall: A True Underdog Story'
+               ,'Along Came Polly'
+               ,'Anchorman:The Legend of Ron Burgundy');   
+
+//update new column but recommend using select first then update
+SELECT CustID
+      ,CreditCardTotalCredit
+      ,CreditCardBalance 
+      ,CreditCardAvailableCredit                 AS OldCreditCardAvailableCredit
+      ,CreditCardTotalCredit - CreditCardBalance AS NewCreditCardAvailableCredit
+FROM CustBal 
+WHERE ActiveStatus = 1;
+      
+
+UPDATE CustBal
+SET CreditCardAvailableCredit = CreditCardTotalCredit - CreditCardBalance
+   ,TotalBalance              = CheckingBalance + SavingsBalance - CreditCardBalance
+WHERE ActiveStatus = 1;
+
+
+//as a rule, always use a select statement to verify what you are about to remove.
+//First, identify the inactive accounts:
+SELECT *
+FROM CustBal 
+WHERE ActiveStatus = 0;
+
+//To delete, replace SELECT * with DELETE and execute;
+DELETE 
+FROM CustBal 
+WHERE ActiveStatus = 0;
+
+
+
+

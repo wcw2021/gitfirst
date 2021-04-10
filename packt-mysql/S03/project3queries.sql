@@ -1,0 +1,14 @@
+SELECT CONCAT(FNAME,' ',LNAME)  AS Friend 
+    ,TIMESTAMPDIFF(YEAR,dob,CURDATE()) AS AGE
+    ,dob
+    ,CURDATE()
+    ,STR_TO_DATE(CONCAT(MONTH(dob),'/',DAY(dob),'/',YEAR(CURDATE())),'%m/%d/%Y') AS BDAY_THIS_YR
+    ,DATE_ADD( STR_TO_DATE(CONCAT(MONTH(dob),'/',DAY(dob),'/',YEAR(CURDATE())),'%m/%d/%Y'), INTERVAL 1 YEAR ) AS BDAY_NEXT_YR
+    ,DATE_ADD(CURDATE(), INTERVAL 6 MONTH) AS 6Months
+    ,MONTHNAME(dob) AS "Birth Month"
+FROM Friends
+WHERE CASE 
+         WHEN STR_TO_DATE(CONCAT(MONTH(dob),'/',DAY(dob),'/',YEAR(CURDATE())),'%m/%d/%Y') >= CURDATE()
+           THEN STR_TO_DATE(CONCAT(MONTH(dob),'/',DAY(dob),'/',YEAR(CURDATE())),'%m/%d/%Y')
+         ELSE DATE_ADD( STR_TO_DATE(CONCAT(MONTH(dob),'/',DAY(dob),'/',YEAR(CURDATE())),'%m/%d/%Y'), INTERVAL 1 YEAR )
+       END BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 6 MONTH);

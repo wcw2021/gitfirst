@@ -1,6 +1,7 @@
 Update based on comparison - Text lecture
 Section 4, Lecture 55
-Let’s create some data to work with: 
+Let's create some data to work with: 
+
 CREATE TABLE CustBal (CustID int NOT NULL AUTO_INCREMENT
             ,CheckingBalance DECIMAL(8,2)
             ,SavingsBalance DECIMAL(8,2)
@@ -39,6 +40,7 @@ SELECT CustID
       ,CreditCardTotalCredit - CreditCardBalance AS NewCreditCardAvailableCredit
 FROM CustBal 
 WHERE ActiveStatus = 1;
+      
       
 SELECT CustID
       ,CheckingBalance

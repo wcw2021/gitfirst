@@ -13,8 +13,7 @@ VALUES
   ('Anchorman 2: The Legend Continues' ,2013)
   ,('Megamind',2010);
 
-INSERT INTO movies (title, rating)
-VALUES('Fight Club','');
+INSERT INTO movies (title, rating) VALUES('Fight Club','');
 
 NULL Means there is no data.  This happens all the time depending on the data you are dealing with. The issue comes is when you are trying come compare a non-existent value (null) to anything
 
@@ -30,7 +29,7 @@ SELECT *
 FROM movies
 WHERE rating IS NULL;
 
-The issue is we were comparing NULL (a non existent value) to a value. Non-existent values don't equal anything. “IS NULL” and IS NOT NULL” compares the field in a way that will return content in these scenarios.
+The issue is we were comparing NULL (a non existent value) to a value. Non-existent values don't equal anything. IS NULL and IS NOT NULL compares the field in a way that will return content in these scenarios.
 
 SELECT * 
 FROM movies
@@ -41,7 +40,7 @@ We can compare a string to an empty string.
 SELECT * 
 FROM movies
 WHERE rating = 'R'
-      OR rating = ‘’;
+      OR rating = '';
 
 SELECT * 
 FROM movies

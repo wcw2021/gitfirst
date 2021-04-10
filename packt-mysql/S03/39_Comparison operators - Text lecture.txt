@@ -24,7 +24,7 @@ FROM movies
 WHERE release_year >= 2005
  AND  release_year <= 2016;  
 
-While this is a great way to accomplish this, it’s also perfectly acceptable to use BETWEEN
+While this is a great way to accomplish this, it's also perfectly acceptable to use BETWEEN
 
 SELECT title
     ,release_year

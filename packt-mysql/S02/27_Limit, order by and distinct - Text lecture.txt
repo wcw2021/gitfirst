@@ -1,6 +1,6 @@
 Limit, order by and distinct - Text lecture
 Section 2, Lecture 27
-Large datasets where you don’t want to tax the system returning millions of rows use limit:
+Large datasets where you donï¿½t want to tax the system returning millions of rows use limit:
 
 SELECT *
 FROM actors
@@ -45,7 +45,7 @@ Let's say you want to know all of the ratings for the movies
 SELECT RATING
 FROM movies;
 
-But don’t like the duplicate rows and want to only display unique ratings.
+But don't like the duplicate rows and want to only display unique ratings.
 SELECT DISTINCT RATING
 FROM movies;
 

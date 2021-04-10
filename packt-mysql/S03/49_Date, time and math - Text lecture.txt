@@ -1,6 +1,6 @@
 Date, time and math - Text lecture
 Section 3, Lecture 49
-Let’s do some math with dates
+Let's do some math with dates
 Start with a table
 CREATE TABLE person (personID INT NOT NULL AUTO_INCREMENT
                     ,FNAME varchar(50) DEFAULT NULL
@@ -13,7 +13,7 @@ INSERT INTO person (FNAME, LNAME,dob)
 VALUES ('Mashrur', 'Hossain','1981-12-25')
       ,('Mark', 'Futre','1985-01-03');
 
-Let’s find ages, so we start with
+Let's find ages, so we start with
 SELECT dob AS Birthdays
       ,CURDATE()   AS Today
 FROM person;
@@ -25,7 +25,7 @@ SELECT dob AS "Birthday"
       ,TIMESTAMPDIFF(YEAR,dob,CURDATE()) AS AGE
 FROM person;    
 
-Let’s find when when the next birthday will be.  In this case we are taking the year only from the current date, attaching it to the month/day of the dob and displaying it as 'Birthday This Year'. Similarly, we are taking the current date, adding a year, and then attaching the dob month/day to calculate what the dob will be next year. The issue is we don’t know if it already happened this year or if it’s going to take place next year.
+Let's find when when the next birthday will be.  In this case we are taking the year only from the current date, attaching it to the month/day of the dob and displaying it as 'Birthday This Year'. Similarly, we are taking the current date, adding a year, and then attaching the dob month/day to calculate what the dob will be next year. The issue is we donï¿½t know if it already happened this year or if itï¿½s going to take place next year.
 
 First let's start with printing out birthday this year and birthday next year
 SELECT FNAME

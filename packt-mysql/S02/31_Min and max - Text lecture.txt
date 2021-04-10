@@ -1,23 +1,16 @@
 Min and max - Text lecture
 Section 2, Lecture 31
-SELECT MAX(ReleaseYear)
-
-FROM movies;
+SELECT MAX(RELEASE_YEAR) FROM movies;
 
 They work exactly how you would expect.
 
-SELECT Title
-      ,MAX(ReleaseYear)
+SELECT TITLE
+      ,MAX(RELEASE_YEAR)
       ,RATING
 FROM movies;
 *Incorrect results
 
-SELECT MIN(ReleaseYear)
-      ,RATING
-FROM movies
-WHERE Title like 'Night at the Museum%'
-GROUP BY Title
-        ,RATING;
+
 
 SELECT RATING
       ,MIN(ReleaseYear)
@@ -35,6 +28,6 @@ SELECT RATING
 FROM movies
 GROUP BY RATING;
 
-MySQL is more “flexible” than other SQL versions.  It doesn’t require the GROUP BY but it should.  It is likely you will get unhelpful or incorrect results when you do not use a group by.
+MySQL is more flexible than other SQL versions.  It doesn't require the GROUP BY but it should.  It is likely you will get unhelpful or incorrect results when you do not use a group by.
 
 All result sets should either be part of an aggregate function, or in the Group By.
