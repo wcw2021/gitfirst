@@ -1,0 +1,6 @@
+css
+
+background-size: cover; 
+background-origin: padding-box;    //content-box; border-box;
+background-clip: border-box
+background: 

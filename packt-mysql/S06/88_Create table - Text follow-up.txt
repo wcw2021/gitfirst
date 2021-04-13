@@ -8,7 +8,8 @@ Create a database, use it and then create a table from mysql cli:
 
 3) CREATE TABLE OptIn ( OptInID INT NOT NULL AUTO_INCREMENT
                     ,formID varchar(50) DEFAULT NULL
-                    ,NAME varchar(100) DEFAULT NULL 
+                    ,FNAME varchar(100) DEFAULT NULL 
+                    ,LNAME varchar(100) DEFAULT NULL
                     ,EMAIL varchar(100) DEFAULT NULL 
                     ,ENTRY_TimeStamp datetime DEFAULT NULL
                     ,SOURCE_IP char(15) DEFAULT NULL

@@ -298,5 +298,199 @@ FROM CustBal
 WHERE ActiveStatus = 0;
 
 
+//Join
+SELECT * FROM movies ,people
+WHERE movies.DIRECTOR = people.ActorID ;
+
+//Join2
+SELECT movies.TITLE
+      ,movies.RELEASE_YEAR
+      ,movies.RATING
+      ,CONCAT(people.FIRST_NAME,' ',people.LAST_NAME) AS Director
+FROM movies
+    ,people
+WHERE movies.DIRECTOR = people.ActorID ;
+
+//alias
+SELECT A.TITLE
+      ,A.RELEASE_YEAR
+      ,A.RATING
+      ,CONCAT(B.FIRST_NAME,' ',B.LAST_NAME) AS Director
+FROM movies A
+    ,people B
+WHERE A.DIRECTOR = B.ActorID ;
+
+//join 3 table
+SELECT A.TITLE
+      ,A.RELEASE_YEAR
+      ,A.RATING
+      ,B.CharacterName
+      ,CONCAT(C.FIRST_NAME,' ',C.LAST_NAME) AS Actor
+FROM movies A
+    ,characters B
+    ,people C
+WHERE A.MovieID = B.MovieID 
+ AND  B.ActorID  = C.ActorID;
+ 
+
+//We can reference the same table multiple times to pull information for various reasons. In the case below, we are using the People table to provide the name of both the directors and the actors
+
+SELECT A.TITLE
+      ,CONCAT(D.FIRST_NAME,' ',D.LAST_NAME) AS Director
+      ,A.RELEASE_YEAR
+      ,A.RATING
+      ,B.CharacterName
+      ,CONCAT(C.FIRST_NAME,' ',C.LAST_NAME) AS Actor
+FROM movies A
+    ,characters B
+    ,people C
+    ,people D
+WHERE A.MovieID  = B.MovieID 
+ AND  B.ActorID  = C.ActorID
+ AND  A.DIRECTOR = D.ActorID
+ AND  A.TITLE LIKE 'Zoo%';
+
+//This can be written a different way. Listing tables in the FROM and joining them in the WHERE is perfectly acceptable, you can also join tables by putting everything in the FROM:
+
+SELECT A.TITLE
+      ,CONCAT(D.FIRST_NAME,' ',D.LAST_NAME) AS Director
+      ,A.RELEASE_YEAR
+      ,A.RATING
+      ,B.CharacterName
+      ,CONCAT(C.FIRST_NAME,' ',C.LAST_NAME) AS Actor
+FROM movies A
+       INNER JOIN characters B
+         ON A.MovieID  = B.MovieID 
+       INNER JOIN people C
+         ON B.ActorID  = C.ActorID  
+       INNER JOIN people D
+         ON A.DIRECTOR = D.ActorID
+WHERE A.TITLE LIKE 'Zoo%';
+ 
+ 
+//inner join
+SELECT A.FIRST_NAME
+      ,A.LAST_NAME
+      ,B.TITLE AS Directed
+      ,B.RELEASE_YEAR
+FROM people A
+      INNER JOIN movies B
+        ON B.DIRECTOR = A.ActorID;
+ 
+//left outer join 
+SELECT A.FIRST_NAME
+      ,A.LAST_NAME
+      ,B.TITLE AS Directed
+      ,B.RELEASE_YEAR
+FROM people A
+      LEFT OUTER JOIN movies B
+        ON B.DIRECTOR = A.ActorID;
+        
+        
+        
+//We can couple this concept with functions we discussed earlier like Min and Max
+//min max
+SELECT A.FIRST_NAME
+      ,A.LAST_NAME
+      ,MIN(C.RELEASE_YEAR) AS FirstDirected
+      ,MAX(B.RELEASE_YEAR) AS LatestRelease
+FROM people A
+     LEFT OUTER JOIN movies B
+      ON B.DIRECTOR = A.ActorID
+     LEFT OUTER JOIN movies C
+      ON C.DIRECTOR = A.ActorID
+GROUP BY A.FIRST_NAME ,A.LAST_NAME
+ORDER BY COUNT(B.MovieID) DESC;       
+
+        
+//ifnull
+SELECT A.FIRST_NAME
+      ,A.LAST_NAME
+      ,IFNULL(MIN(C.Release_Year),'N/A') AS FirstDirected
+      ,IFNULL(MAX(B.Release_Year),'N/A') AS LatestRelease
+FROM people A
+      LEFT OUTER JOIN movies B
+       ON B.director = A.ActorID
+      LEFT OUTER JOIN movies C
+       ON C.director = B.director   
+GROUP BY A.FIRST_NAME
+        ,A.LAST_NAME;        
+
+
+
+//subset
+SELECT A.FIRST_NAME
+      ,A.LAST_NAME
+      ,IFNULL(MIN(C.Release_Year),'N/A') AS FirstDirected
+      ,IFNULL(MAX(B.Release_Year),'N/A') AS LatestRelease
+      ,D.cnt AS MoviesDirected
+FROM people A
+     LEFT OUTER JOIN movies B
+      ON B.director = A.ActorID
+     LEFT OUTER JOIN movies C
+      ON C.director = B.director   
+     LEFT OUTER JOIN (SELECT Z.Director AS ActorID
+                            ,COUNT(Z.MovieID) AS cnt
+                      FROM movies Z
+                      GROUP BY Z.Director) D
+      ON D.ActorID = A.ActorID                      
+GROUP BY A.FIRST_NAME
+        ,A.LAST_NAME
+        ,D.cnt
+ORDER BY D.cnt DESC;
+
+
+//We can use NOT to find anyone on the People table who has never directed a movie
+SELECT A.FIRST_NAME
+      ,A.LAST_NAME
+FROM people A
+WHERE NOT EXISTS (SELECT 1
+                  FROM movies Z
+                  WHERE Z.Director = A.ActorID) 
+GROUP BY A.FIRST_NAME
+        ,A.LAST_NAME; 
+
+Similarly, we can use NOT IN to find the same information:
+
+SELECT A.FIRST_NAME
+      ,A.LAST_NAME
+FROM people A
+WHERE A.ActorID NOT IN (SELECT Z.Director
+                        FROM movies Z) 
+GROUP BY A.FIRST_NAME
+        ,A.LAST_NAME; 
+
+
+
+//Objective: Delete all people from the people table that have never been a director.
+
+Step 1: Plan it out using a select Statement
+SELECT COUNT(*) FROM people; 
+
+SELECT COUNT(*)
+FROM people A
+WHERE NOT EXISTS (SELECT 1
+                  FROM movies Z
+                  WHERE Z.Director = A.ActorID);
+                  
+//Sometimes it's helpful to view what you are going to be deleting in terms of row count
+
+SELECT *
+FROM people A
+WHERE NOT EXISTS (SELECT 1
+                  FROM movies Z
+                  WHERE Z.Director = A.ActorID);  
+                  
+                 
+Step 2: Update the Select into a Delete and Execute
+DELETE
+FROM people 
+WHERE NOT EXISTS (SELECT 1
+                  FROM movies Z
+                  WHERE Z.Director = ActorID);  
+
+Step 3: Confirm your results
+SELECT * FROM people;
+
 
 

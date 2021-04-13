@@ -38,8 +38,8 @@ When your joining tables, you can join them to the primary table or any table, b
 
 SELECT A.FIRST_NAME
       ,A.LAST_NAME
-      ,IFNULL(MIN(C.ReleaseYear),'N/A') AS FirstDirected
-      ,IFNULL(MAX(B.ReleaseYear),'N/A') AS LatestRelease
+      ,IFNULL(MIN(C.Release_Year),'N/A') AS FirstDirected
+      ,IFNULL(MAX(B.Release_Year),'N/A') AS LatestRelease
 FROM people A
       LEFT OUTER JOIN movies B
        ON B.director = A.ActorID

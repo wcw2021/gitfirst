@@ -1,6 +1,7 @@
 Create action - Text lecture
 Section 7, Lecture 105
 Create a new file titled CreateToDo.php, this will be our form to create new to-do's from the browser
+
 <HTML>
   <HEAD>
     <TITLE>CreateToDo</TITLE>

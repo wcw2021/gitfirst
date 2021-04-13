@@ -4,6 +4,7 @@ Delete ->
 
 Create a new field titled DeleteToDo.php
 This file will take the input from a POST, and delete the corresponding ToDo row.
+
 <?php
   include('SQLFunctions.php');
 
@@ -41,8 +42,8 @@ Update the while statement on ToDoApp.php and add a delete button under update, 
           echo "<td>{$row[0]}</td>";
           echo "<td>{$row[1]}</td>";
           echo "<td>{$row[2]}</td>";
-          echo "<td><form action='UpdateToDo.php' method = '_POST' onsubmit='' /> <input type='hidden' name='q' value='".$row[3]."' /><input type='Submit' value='Update'></form>";
-          echo "<form action='DeleteToDo.php' method = '_POST' onsubmit='' /> <input type='hidden' name='q' value='".$row[3]."' /><input type='Submit' value='Delete'></form></td>";
+          echo "<td><form action='UpdateToDo.php' method = 'POST' onsubmit='' /> <input type='hidden' name='q' value='".$row[3]."' /><input type='Submit' value='Update'></form>";
+          echo "<form action='DeleteToDo.php' method = 'POST' onsubmit='' /> <input type='hidden' name='q' value='".$row[3]."' /><input type='Submit' value='Delete'></form></td>";
         echo "</tr>";
       } 
 

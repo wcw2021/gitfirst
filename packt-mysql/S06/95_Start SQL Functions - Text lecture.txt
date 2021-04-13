@@ -3,6 +3,7 @@ Section 6, Lecture 95
 Create another file named SQLFunctions.php
 
 Put the following in SQLFunctions.php
+
 <?php
 include('config.php');
 
@@ -26,7 +27,7 @@ function f_validIP($ip) {
        /*ip2long($ip) is a form of validation on the input*/
   if (!empty($ip) && ip2long($ip)!=-1) {
                /*Create an array of arrays standard non routable IPs so we can filter 
-               out IPs that aren’t useful*/
+               out IPs that arenï¿½t useful*/
     $reserved_ips = array (
       array('0.0.0.0','2.255.255.255'),
       array('10.0.0.0','10.255.255.255'),
@@ -44,7 +45,7 @@ function f_validIP($ip) {
       $max = ip2long($r[1]);
       if ((ip2long($ip) >= $min) && (ip2long($ip) <= $max)) return false;
     }
-               /*if the ip is populated and isn’t in the non routable range, return true*/
+               /*if the ip is populated and isnï¿½t in the non routable range, return true*/
     return true; 
   } else {
       return false;     

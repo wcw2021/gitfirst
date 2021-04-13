@@ -2,7 +2,7 @@ CRUD - Intro - Text follow-up
 Section 7, Lecture 103
 Create Read Update Delete
 
-First in mysql cli, create a database and table for the project “To Do List”
+First in mysql cli, create a database and table for the project ï¿½To Do Listï¿½
 CREATE DATABASE CRUD;
 
 Then use the database
@@ -41,6 +41,7 @@ if ($link->connect_error) {
 /*Close database connection*/
   mysqli_close ( $link );
 ?>
+
 Click Run Project 
 
 Open the url from Apache
@@ -49,11 +50,12 @@ Open the ToDoCrud folder
 
 Then open ToDoApp.php
 
-The page should say “Connected successfully” confirming that you application was able to find the database and connect to it.
+The page should say ï¿½Connected successfullyï¿½ confirming that you application was able to find the database and connect to it.
 
 Next step, insert rows
 
 Every time you access the page in your browser, it inserts a row into the table due to the code below that will be added now.  
+
 <?php
 
 /*Connect to CRUD Database  mysqli(Server,User,Password,Database)*/
@@ -123,4 +125,4 @@ function connectDB() {
 }
 ?>
 
-We’ll use these going forward to connect to the database.
+Weï¿½ll use these going forward to connect to the database.

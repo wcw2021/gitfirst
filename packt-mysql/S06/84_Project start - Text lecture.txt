@@ -3,10 +3,10 @@ Section 6, Lecture 84
 Right click on workspace folder and select the option to create a new folder 
 Name the folder FormCollector 
 
-Right click on the FormCollector folder and select ‘New File’, name it OptIn.html
+Right click on the FormCollector folder and select New File, name it OptIn.html
 We are going to put static HTML form in this file to collect information like name and email address. This could be used as part of a larger website that is asking people to join the mailing list.
 
-HTML is fairly easy to read.  Everything has “tags” which are words or phrases inside of <> and </> to show the beginning and end of that tag. For Example, at the beginning of an HTML document, we have the tag <HTML> meaning anything after this and prior to </HTML> is html code. Similarly, we have a Header section of the HTML marked by <HEAD> and </HEAD>
+HTML is fairly easy to read.  Everything has tags which are words or phrases inside of <> and </> to show the beginning and end of that tag. For Example, at the beginning of an HTML document, we have the tag <HTML> meaning anything after this and prior to </HTML> is html code. Similarly, we have a Header section of the HTML marked by <HEAD> and </HEAD>
 http://www.w3schools.com/html/ is a great resource when referencing HTML, along with http://learn.shayhowe.com/html-css/
 Something handy to know: Commenting stuff out is done by adding <!-- add comment here -->
 
@@ -21,7 +21,7 @@ Open OptIn.html, paste the following
 Save and close.
 Run it by clicking on run project and going to the screen.
 
-Notice that “Sign Up” is in a pretty big font due to H1 tag.
+Notice that Sign Up is in a pretty big font due to H1 tag.
 
 Now let's add a tag for title.
 Add the title tag between the HEAD tags
@@ -33,7 +33,7 @@ Place the following below the <h1>Sign Up</h1>
         <input type="submit" class='button'>        
       </form>
 
-We haven’t created it yet, but when the form is submitted, it will send the contents of the form to the form action page. In this case “reciever.php”
+We haven't created it yet, but when the form is submitted, it will send the contents of the form to the form action page. In this case reciever.php
 Test it out.
 
 Notice that we have a method of POST.  This can be thought of as we are submitting/posting information to the other page. There is another method called GET, but for our purposes, POST works well.
@@ -49,13 +49,13 @@ To collect the information, we add Inputs for First Name, Last Name, and Email a
 <p>Email: <input type="text" name="EMAIL" maxlength='100'  required/></p>
 
 The <p> tag is for paragraph and it simply creates some space between the inputs.
-“First Name: “, “Last Name: “, and “Email: “ are simply labels
-“required” is an HTML5 setting that requires the fields to be filled out before the form will submit.
-“maxlength” prevents users from entering too much data. Depending on what we plan to do with the input, this length will vary.
-The name of “FNAME” or “LNAME” is what the input will be named when the form is submitted.
+ï¿½First Name: ï¿½, ï¿½Last Name: ï¿½, and ï¿½Email: ï¿½ are simply labels
+ï¿½requiredï¿½   s an HTML5 setting that requires the fields to be filled out before the form will submit.
+ï¿½maxlengthï¿½ prevents users from entering too much data. Depending on what we plan to do with the input, this length will vary.
+The name of ï¿½FNAMEï¿½ or ï¿½LNAMEï¿½ is what the input will be named when the form is submitted.
 
 Type sets the type of input. There are a number of types, test types, submit types and lots of others.
-Another type is “hidden” which simply is an input that the user won’t see, but will be sent as part of the form.
+Another type is ï¿½hiddenï¿½ which simply is an input that the user wonï¿½t see, but will be sent as part of the form.
 Test this out.
 
 Let's add some hidden inputs for use later on in the project:

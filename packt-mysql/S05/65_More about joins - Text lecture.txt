@@ -1,6 +1,6 @@
 More about joins - Text lecture
 Section 5, Lecture 65
-Let’s Join Movies with Characters
+Let's Join Movies with Characters
 
 SELECT A.TITLE
       ,A.RELEASE_YEAR
@@ -57,4 +57,4 @@ FROM movies A
          ON A.DIRECTOR = D.ActorID
 WHERE A.TITLE LIKE 'Zoo%';
 
-Both of these joins are Inner Joins. They mean that all of the rows in all of the tables need to exist. If no actors were listed for a movie, the movie won't show on the list. If no movies are associated with that actor, the actor won’t be returned.
+Both of these joins are Inner Joins. They mean that all of the rows in all of the tables need to exist. If no actors were listed for a movie, the movie won't show on the list. If no movies are associated with that actor, the actor won't be returned.

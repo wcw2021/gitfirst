@@ -11,13 +11,14 @@ FROM people A
 WHERE NOT EXISTS (SELECT 1
                   FROM movies Z
                   WHERE Z.Director = A.ActorID);
-Sometimes it’s helpful to view what you are going to be deleting in terms of row count
+Sometimes it's helpful to view what you are going to be deleting in terms of row count
 
 SELECT *
 FROM people A
 WHERE NOT EXISTS (SELECT 1
                   FROM movies Z
-                  WHERE Z.Director = A.ActorID);   
+                  WHERE Z.Director = A.ActorID);  
+                  
                  
 Step 2: Update the Select into a Delete and Execute
 DELETE

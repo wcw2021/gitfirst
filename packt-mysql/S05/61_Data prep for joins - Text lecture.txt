@@ -1,7 +1,7 @@
 Data prep for joins - Text lecture
 Section 5, Lecture 61
 Lets prepare some tables for Joins.
-Generally, you don’t want to rename tables, but let's expand the definition of our actors table and name it as people
+Generally, you don't want to rename tables, but let's expand the definition of our actors table and name it as people
 
 RENAME TABLE actors TO people;
 

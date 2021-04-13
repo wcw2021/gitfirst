@@ -1,6 +1,7 @@
 Config and other php - Text follow-up
 Section 6, Lecture 91
 Update config.php with the following code:
+
 <?php
 /*Configuration Settings*/
 
@@ -11,7 +12,7 @@ define('DB_PWD',  ''); /*Database Password*/
 
 ?>
 
-This information could have been stored with the rest of the application, but separating it out into it’s own file simplifies things when moving the application to a new location. 
+This information could have been stored with the rest of the application, but separating it out into itï¿½s own file simplifies things when moving the application to a new location. 
 
 Create another file named receiver.php
 Put the following contents in it:
@@ -21,7 +22,7 @@ include('SQLFunctions.php');
 
 /*First we are going to handle what is being submitted in the form by displaying it, so we display what is in the _POST*/
 /*echo simply means write the following out to the page, adding this description and the line breaks will make the output legible */
-/*The echo statements aren’t actually needed, but they are really helpful in troubleshooting*/
+/*The echo statements arenï¿½t actually needed, but they are really helpful in troubleshooting*/
   echo '<br>Display full contents of the _POST: <br>';
 /*var_dump is a function that write all of names and values from the post*/
   var_dump($_POST);
@@ -81,6 +82,6 @@ PHP offers some really cool features like detecting the IP that the _POST came f
                  /*header("Location: $successredirecturl?msg=1");*/
                }
 
-/*Lastly - It’s always good practice to close the database connection*/
+/*Lastly - Itï¿½s always good practice to close the database connection*/
   mysqli_close ($link);
 ?>
