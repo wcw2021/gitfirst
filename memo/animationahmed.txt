@@ -1,0 +1,81 @@
+ahmed transition & animation
+
+//transition
+
+transition-property: background-color color width;
+transition-duration: 1s;
+transition-delay: 2s;
+
+//transition shorthand for property,duration,function,delay
+transition: background-color 3s ease 1s, color 2s ease 4s  
+
+----extra-begin--
+
+transition-timing-function: ease-in;   //ease; linear;
+
+transition-property: translate();
+transition-duration: 3s;
+
+transition-property: all
+
+trasform: translate(900px, 0);
+
+----extra-end----
+
+//transform
+function: scale, translate, rotate, skew
+
+//translate
+transform: translate(-500px, -200px);    //translateX(-500px); translateY(-200px); 
+transition: transform 2s
+
+//scale
+transform: scale(.25);   //scaleX(2); scaleY(.5);
+
+//rotate
+transform: rotate(-60deg);   //rotate(20deg); rota(1turn); rotate(200grad);
+
+//skew
+transform: skew(-30deg, 30deg);  //skewX(-30deg);  skewY(30deg);
+
+//transform origin
+transform-origin: top left;  //right; botttom right; 30% 80%; 300px 150px;
+
+//3D transform
+trasform: translateZ(300px);  //far to near
+perspective: 1000px;   //perspective to the viewer and the screen
+
+transform: rotateZ(120deg);  //rotateX(60deg); rotateY(90deg);
+perspective: 500px;
+
+
+//animation
+@keyframes moving{
+  from { transform: translateX(0); }
+   to { transform: translateX(1000px); }
+}
+
+animation-name: moving;
+animation-duration: 3s;
+animation-delay: 3s;
+animation-timing-function: ease;
+
+//animation stage
+@keyframes moving{
+  0% { transform: translateX(0); }
+  50% { transform: translateY(1000px); }
+  100% { transform: translate(1000px, 500px); }
+}
+
+//animation fill mode property
+animation-fll-mode: none;  //forwards, backwards, (default)none; both;
+
+//animation iteration count property
+animation-iteration-count: 3;  //infinite; 
+
+//animation direction property
+animation-direction: normal;  //reverse; alternate; alternate-reverse;  (default)normal;
+
+//animation shorthand
+animation: moving 3s both 3 ease-in alternate 1s;
+
